@@ -14,7 +14,7 @@ const resolvers = {
 
       me: async (parent, args, context) => {
         if (context.user) {
-          return User.findOne({ _id: context.user._id });
+          return User.findOne({ _id: context.user._id }).populate("saveBooks");
         }
         throw new AuthenticationError('You need to be logged in!');
       },
@@ -45,7 +45,7 @@ const resolvers = {
         return { token, user };
       },
 
-      addBook: async (parent, { userId, title, authors, description, image, bookId, link }, context) => {
+      addBook: async (parent, { title, authors, description, image, bookId, link }, context) => {
         if (context.user) {
           return User.findOneAndUpdate(
             { _id: context.user._id },
@@ -58,19 +58,19 @@ const resolvers = {
               new: true,
               runValidators: true,
             }
-          );
+          ).populate("saveBooks");
         }
         throw new AuthenticationError('You need to be logged in!');
       },
 
-      removeBook: async (parent, { userId, bookId }, context) => {
+      removeBook: async (parent, { bookId }, context) => {
         if (context.user) {
           return User.findOneAndUpdate(
             { _id: context.user._id },
             {
               $pull: {
                 saveBooks: {
-                  _id: bookId,
+                  bookId: bookId,
                 },
               },
             },
