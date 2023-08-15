@@ -6,13 +6,13 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      saveBooks {
-        _id
+      bookCount
+      savedBooks {
+        bookId
         title
         authors
         description
         image
-        bookId
         link
       }
     }
@@ -25,13 +25,13 @@ export const QUERY_ME = gql`
         _id
         username
         email
-        saveBooks {
-          _id
+        bookCount
+        savedBooks {
+          bookId
           title
           authors
           description
           image
-          bookId
           link
         }
     }
