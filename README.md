@@ -45,7 +45,7 @@ npm run develop
 
 [Link to repository](https://github.com/gesu001/Book_Search_Engine-MERN.git)
 
-[Link to the deployed application]()
+[Link to the deployed application](https://peaceful-ridge-15058-22893af1a525.herokuapp.com/)
 
 ## Built With Technologies
 
